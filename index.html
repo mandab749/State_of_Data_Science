@@ -1,0 +1,344 @@
+
+<html>
+<head lang="en">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.min.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/custom.css') }}">   
+
+ <title>DataScienceSurvey</title>
+  </head>
+  <body>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Logo and responsive toggle -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+		    
+                </button>
+                <a class="navbar-brand" href="#">
+                	<span class="glyphicon glyphicon-fire"></span>
+                	Data Science Survey
+                </a>
+            </div>
+	</div>
+
+</nav>
+<!--
+	<div class="jumbotron feature">
+		<div class="container">
+			<h2><span class="glyphicon glyphicon-equalizer"></span> Data Science Survey</h2>
+			<p>State of Data Science 2019</p>
+		</div>
+	</div>
+-->
+
+            <header>
+      <div class="container">
+        <div id="header">
+      {% block content %}
+      {% endblock %}
+    </div>
+</div>
+
+
+    <meta charset="UTF-8">  
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+
+<div class="jumbotron feature">
+<div class="container">
+      <h2><span class="glyphicon glyphicon-equalizer"></span>Survey Questions</h2>
+	<p style = "color:black">Refine Your Search</p>
+      <br>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</script>
+
+       <form action = "/foo" method = "POST">
+	<span  style = "color:black" >X-axis: <select id = "subset_by" name="subset_by" multiple>
+	 <option value="Age" style = "color:black">Age</option>
+          <option value="Gender"  style = "color:black" >Gender</option>
+          <option value="Country"  style = "color:black">Country</option>
+         <option value="yearly_compensation"  style = "color:black">Yearly Compensation</option>
+          <option value="experience_coding"  style = "color:black">Number of Years Experience</option>
+          <option value="recommended_language"  style = "color:black">Beginner Language Recommendation</option>
+        </select></span>
+         
+	 <span  style = "color:black">Y Axis: <select id="proportions" name="proportions" multiple>
+	 <option value="yearly_compensation"  style = "color:black">Yearly Compensation</option>
+          <option value="experience_coding"  style = "color:black">Number of Years Experience</option>
+          <option value="recommended_language"  style = "color:black">Beginner Language Recommendation</option>
+         <option value="Age" style = "color:black">Age</option>
+          <option value="Gender"  style = "color:black" >Gender</option>
+          <option value="Country"  style = "color:black">Country</option>
+        </select></span>                                                                                                  </script>                                                                                                                                                                                                                                     
+
+      </form>
+</div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+          <div class="chart" id="bargraph">
+
+	  <script>
+  function show_image(snc, width, height, alt) {
+      var img = document.createElement("img");
+      var subset = document.getElementById("subset_by").value ;
+      var proportions = document.getElementById("proportions").value ;
+      var src = "./static/" + subset + "_" + proportions + ".png" ;
+      img.src = snc;
+      img.width = width;
+      img.height = height;
+      img.alt = src ;
+
+      // This next line will just add it to the <body> tag
+      document.body.appendChild(img);
+  }
+
+      function picture(){
+      var subset = document.getElementById("subset_by").value ;
+      var proportions = document.getElementById("proportions").value ;
+      var pic = "./static/" + subset + "_" + proportions + ".png" ;
+      var src = "./static/Age_Gender.png";
+      document.getElementById('bigpic').src = pic.replace('100%', '100%');
+      document.getElementById('bigpic').style.display='block';
+      }
+
+
+  </script>
+
+  <button onclick="picture()">Submit</button>
+  <img id="bigpic" src="./static/.secret/q12_Everything_1-2 yrs.png" style="display:none;" width = "90%" height = "90%"/>
+
+
+      </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+          <div class="chart" id="bargraph">
+
+
+<!--  <img src="./static/" + subset_by + "_" + proportions + ".png" alt="Chart" height="90%" width="90%"> -->
+<!--  
+  <script>
+  function show_image(snc, width, height, alt) {
+      var img = document.createElement("img");
+      var subset = document.getElementById("subset_by").value ;
+      var proportions = document.getElementById("proportions").value ;
+      var src = "./static/" + subset + "_" + proportions + ".png" ;
+      img.src = snc;
+      img.width = width;
+      img.height = height;
+      img.alt = src ;
+
+      // This next line will just add it to the <body> tag
+      document.body.appendChild(img);
+  }
+
+      function picture(){ 
+      var subset = document.getElementById("subset_by").value ;
+      var proportions = document.getElementById("proportions").value ;
+      var pic = "./static/" + subset + "_" + proportions + ".png" ;
+      var src = "./static/Age_Gender.png";
+      document.getElementById('bigpic').src = pic.replace('100%', '100%');
+      document.getElementById('bigpic').style.display='block';
+      }
+
+
+  </script>
+  
+  <button onclick="picture()">Submit</button>
+  <img id="bigpic" src="./static/Age_Gender.png" style="display:none;" width = "90%" height = "90%"/>
+
+-->
+        </form>
+</div>
+
+           </div>
+        </div>
+    </div>
+
+
+	<footer>
+		<div class="footer-blurb">
+<!--<div class="jumbotron feature">  -->
+			<div class="container">
+<div class="col-md-12">
+<h1 style = "color:black" ><center>Interesting Findings</center></h1>
+				<div class="row">
+					<div class="col-sm-4 footer-blurb-item">
+						<h3><span class="glyphicon glyphicon-fire"></span>Language Recommendations</h3>
+			<p  style = "color:black" >We were very interested to see what the language recommendations were from those with many years of experience. It was no surprise that Python, R, and SQL were the top languages </p>
+					<!--	<p><a class="btn btn-default" href="#">Procrastinate</a></p>  -->
+					</div>
+					<div class="col-sm-4 footer-blurb-item">
+				<h3><span class="glyphicon glyphicon-cloud-upload"></span>Age & Country</h3>
+						<p  style = "color:black">One of the things we noticed was that the United States has more "experienced" data scientists. However, there seems to be quite a gap in the younger age bracket for US data scientists when compared to India. In a nutshell, we need more data scientists in the US (or more of them to answer the survey) </p>
+					<!--	<p><a class="btn btn-default" href="#">Unleash</a></p>   -->
+					</div>
+					<div class="col-sm-4 footer-blurb-item">
+						<h3><span class="glyphicon glyphicon-leaf"></span>Gender & Coding</h3>
+						<p  style = "color:black">Another part that we noted was the difference in gender and years coding. Naturally, there are not as many coders in the 10-20+ year bins. However, we did notice a positive overall difference in female coders in recent years. </p>
+				<!--		<p><a class="btn btn-default" href="#">Synergize</a></p>   -->
+					</div>
+
+				</div>
+				<!-- /.row -->	
+			</div>
+</div>
+        </div>
+	</footer>
+
+<hr>
+
+<!-- Other dropdown section -->
+
+<div class="jumbotron feature">
+<div class="container">
+      <h2><span class="glyphicon glyphicon-equalizer"></span>Word Cloud</h2>
+        <p style = "color:black">Refine Your Search</p>
+      <br>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</script>
+
+       <form action = "/foo" method = "POST">
+        <span  style = "color:black" >Types QA <select id = "yes_no" name="yes_no" multiple>
+         <option value="Everything" style = "color:black">Everything</option>
+          <option value="Other_Only"  style = "color:black" >Other/Only</option>
+          <option value="Other_Excluded"  style = "color:black">Other/Excluded</option>
+        </select></span>
+
+         <span  style = "color:black">Questions<select id="question" name="question" multiple>
+         <option value="q34"  style = "color:black">Which of the following relational database products do you use on a regular basis?</option>
+          <option value="q29"  style = "color:black">Which of the following cloud computing platforms do you use on a regular basis?</option>
+          <option value="q27"  style = "color:black">Which of the following natural language processing (NLP) methods do you use on a regular basis?</option>
+         <option value="q26" style = "color:black">Which categories of computer vision methods do you use on a regular basis?</option>
+          <option value="q25"  style = "color:black" >Which categories of ML tools do you use on a regular basis?</option>
+          <option value="q24"  style = "color:black">Which of the following ML algorithms do you use on a regular basis?</option>
+	 <option value="q16"  style = "color:black">What programming languages do you use on a regular basis?</option>   
+	 <option value="q24"  style = "color:black">Which of the following integrated development environments (IDE's) do you use on a regular basis?</option>   
+	 <option value="q13"  style = "color:black">On which platforms have you begun or completed data science courses?</option>   
+	  <option value="q12"  style = "color:black">Who/what are your favorite media sources that report on data science topics?</option>
+         <option value="q9"  style = "color:black">Select any activities that make up an important part of your role at work</option>
+        </select></span>  
+
+         <span  style = "color:black">Years Exp <select id="where" name="where" multiple>
+         <option value="I have never written code"  style = "color:black">I have never written code</option>
+         <option value="20+ years"  style = "color:black">20+ years</option>
+         <option value="1-2 years"  style = "color:black">1-2 years</option> 
+        <option value="5-10 years" style = "color:black">5-10 years</option>  
+        <option value="3-5 years"  style = "color:black" >3-5 years</option>
+        <option value="10-20 years"  style = "color:black">10-20 years</option>  
+       <option value="< 1 years"  style = "color:black"> Less 1 years</option>
+        <option value="Not Applicable"  style = "color:black"> Not Applicable</option> 
+         
+ <select></span>
+
+                                          
+      </script>                                                                                                                                                                                                                               
+
+      </form>
+</div>
+</div>
+
+
+
+
+<div class="container">                                                                                                                                                              <div class="row">
+        <div class="col-md-12">                                                                                                                                                            <div class="chart" id="bargraph">  
+
+	
+<script>
+function show_image(snc, width, height, alt) {
+  var q = document.createElement("img");
+  var subset = document.getElementById("subset_by").value ;
+  var proportions = document.getElementById("proportions").value ;
+  var src = "./static/" + subset + "_" + proportions + ".png" ;
+  img.src = snc;
+  img.width = width;
+  img.height = height;
+  img.alt = src ;
+
+  // This next line will just add it to the <body> tag
+  document.body.appendChild(img);
+}
+
+  function dicture(){
+  var y = document.getElementById("yes_no").value ;
+  var q = document.getElementById("question").value ;
+  var w = document.getElementById("where").value ;
+  var pic = "./static/.secret/" + q + "_" + y + "_" +w+ ".png" ;
+  var src = "./static/Age_Gender.png";
+  document.getElementById('word_fucking_cloud').src = pic.replace('100%', '100%');
+  document.getElementById('word_fucking_cloud').style.display='block';
+  }
+
+
+</script>
+
+<button onclick="dicture()">Submit</button>
+<img id="word_fucking_cloud" src="./static/.secret/q12_Everything_1-2 years.png" style="display:none;" width = "50%" height = "50%"/>
+
+
+
+</div>
+</div>
+</div>
+</div>
+
+       <footer>
+                <div class="footer-blurb">
+<!--<div class="jumbotron feature">  -->
+                        <div class="container">
+<div class="col-md-12">
+<h1 style = "color:black" ><center>Interesting Findings Word Cloud</center></h1>
+                                <div class="row">
+                                        <div class="col-sm-4 footer-blurb-item">
+                                                <h3><span class="glyphicon glyphicon-fire"></span>Q24: ML Algorithms</h3>
+                        <p  style = "color:black" > We wanted to see what ML algorithms the data scientists that answered this survey used on a regular basis since this relates to what we've learned already in the program. Answers such as logistic regression and neural networks were all answers given and algorithms that we've directly dealt with in the program. </p>
+                                        <!--    <p><a class="btn btn-default" href="#">Procrastinate</a></p>  -->
+                                        </div>
+                                        <div class="col-sm-4 footer-blurb-item">
+                                <h3><span class="glyphicon glyphicon-cloud-upload"></span>Q12: News</h3>
+                                                <p  style = "color:black">We were curious where data scientists get their news when it comes to data science related topics.We were suprised to find the variance in sources between each year segmentation. </p>
+                                        <!--    <p><a class="btn btn-default" href="#">Unleash</a></p>   -->
+                                        </div>
+                                        <div class="col-sm-4 footer-blurb-item">
+                                                <h3><span class="glyphicon glyphicon-leaf"></span>Q20: Data Viz</h3>
+                                                <p  style = "color:black">Data visualization is a big component of data science, so we wanted to find out what data visualization libraries/tools data scientists use. Ggplot2, matplotlib, and seaborn were popular choices and some of which are ones we've used or been exposed to so far. </p>
+                                <!--            <p><a class="btn btn-default" href="#">Synergize</a></p>   -->
+                                        </div>
+
+                                </div>
+                                <!-- /.row -->
+                        </div>
+</div>
+        </div>
+<!--
+        <div class="small-print">
+                <div class="container">
+                        <p><a href="#">Terms &amp; Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p>
+                        <p>Copyright &copy; Example.com 2015 </p>
+                </div>
+        </div>
+-->
+        </footer>
+
+</div>
+</body>
+</html>
+
