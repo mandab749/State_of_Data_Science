@@ -7,7 +7,7 @@ Using the Kaggle 2019 State_of_Data_Science Survey, we wanted to see what data s
 We were tasked to create a web-app using Flask on our institution's server. Ultimately, our app allows users to explore the data themselves using graphs and word clouds created in python code. 
 
 # Files
-- index.hmtl - our web-app page. The css and js files are not included in this git folder
+- index.html - our web-app page. The css and js files are not included in this git folder
 - views.py - graphs python code in conjuction with Flask
 - kaggle_database.py & Word_Cloud_queries.py used for word cloud portion of web-app
 
